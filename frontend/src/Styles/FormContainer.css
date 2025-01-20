@@ -1,0 +1,39 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 30px;
+  padding: 25px;
+  justify-content: center;
+  border: 1px solid white;
+  box-shadow: 0 0 5px white;
+  border-radius: 10px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: whitesmoke;
+  border: 0px;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.active {
+  background-color: palegreen;
+
+  border: 0px;
+  border-radius: 10px;
+}
+
+.active-tab {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
