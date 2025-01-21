@@ -2,7 +2,10 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 30px;
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 20px;
+  margin-bottom: 20px;
   padding: 25px;
   justify-content: center;
   border: 1px solid white;
@@ -16,24 +19,17 @@
   align-items: center;
 }
 
-button {
-  background-color: whitesmoke;
-  border: 0px;
-  padding: 10px;
-  border-radius: 10px;
-  margin: 5px;
-}
-
 .active {
   background-color: palegreen;
-
-  border: 0px;
-  border-radius: 10px;
 }
 
 .active-tab {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+#reset-password-button {
   justify-content: center;
 }

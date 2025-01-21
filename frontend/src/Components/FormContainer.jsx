@@ -2,7 +2,7 @@ import { use, useState } from 'react';
 import '../Styles/FormContainer.css';
 import { LoginForm } from './LoginForm';
 import { SignUpForm } from './SignupForm';
-function FormContainer() {
+function FormContainer({ onLogin }) {
   const [activeTab, setActiveTab] = useState('signin');
 
   return (
@@ -26,7 +26,7 @@ function FormContainer() {
         {activeTab === 'signin' ? (
           <div className="active-tab">
             <div className="active-form">
-              <LoginForm />
+              <LoginForm onSubmit={onLogin} />
             </div>
           </div>
         ) : (
@@ -38,7 +38,7 @@ function FormContainer() {
         )}
       </div>
       <p>Forgot your password?</p>
-      <button>Reset Password</button>
+      <button id="reset-password-button">Reset Password</button>
     </div>
   );
 }

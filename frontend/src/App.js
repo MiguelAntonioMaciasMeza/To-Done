@@ -5,6 +5,7 @@ import './App.css';
 import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { Header } from './Components/Header';
 import { FormContainer } from './Components/FormContainer';
+import { use } from 'react';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState(null); // No user at first
@@ -166,38 +167,8 @@ function App() {
     }
   };
 
-  // Login function
-  const handleLogin = async (e) => {
-    // ...
-    e.preventDefault(); // This single line was all I needed for it to work....
-    try {
-      console.log('Attempting POST request');
-      const response = await fetch(`${backendURL}/api/login`, {
-        mode: 'cors',
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username: username, password: password }),
-      });
-      if (response.status === 200) {
-        const data = await response.json();
-        setUser(data);
-        setMessage(null);
-        setStatus(null);
-      } else if (response.status === 401 || response.status === 400) {
-        setMessage('Incorrect Username/Password. Please try agan.');
-        setStatus('error');
-      } else {
-        setUser(null); // Reset user on failed login
-        setTasks([]);
-      }
-    } catch (err) {
-      console.log('Error while attempting to login', err);
-    }
-
-    console.log(user);
+  const handleUser = (data) => {
+    setUser(data);
   };
 
   const handleLogout = () => {
@@ -273,7 +244,11 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {user ? <p>Login</p> : <FormContainer />}
+      {user ? (
+        <p>{user.user.username}</p>
+      ) : (
+        <FormContainer onLogin={handleUser} />
+      )}
     </div>
   );
 }
