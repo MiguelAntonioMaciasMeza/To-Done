@@ -9,19 +9,12 @@ import { use } from 'react';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState(null); // No user at first
-  const [activeTab, setActiveTab] = useState('signin');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [resetTokenVisible, setResetTokenVisible] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [status, setStatus] = useState('');
-  const [containerVisible, setContainerVisible] = useState('');
-  const [resetPasswordVisible, setResetPassowrdVisible] = useState('');
   let location = useLocation();
-  let [params] = useSearchParams();
   let navigate = useNavigate();
 
   const backendURL = process.env.REACT_APP_BACKEND_URL;
@@ -60,8 +53,6 @@ function App() {
   useEffect(() => {
     if (location.pathname === '/reset-password') {
       try {
-        setContainerVisible(true);
-        setResetPassowrdVisible(true);
       } catch (error) {
         console.log('Error:', error);
       }
@@ -83,16 +74,10 @@ function App() {
       //Email is valid, now make other textfields appear
       if (response.status === 200) {
         //Toggle aditional text-fields for reset token and new password
-
-        setMessage('Check email for your password reset token!');
-        setStatus('success');
       } else if (response.status === 404) {
-        setMessage('Email was not found. Please try again.');
-        setStatus('error');
       }
     } catch (error) {}
   }
-
   function RenderMessage({ message, status }) {
     return <span className={`status-message ${status}`}> {message} </span>;
   }
@@ -100,7 +85,7 @@ function App() {
   async function resetPassword() {
     try {
       //Make sure the user has inserted the same password twice
-      const token = params.get('token');
+      const token = null;
       console.log('This is token:', token);
       if (newPassword === confirmPassword) {
         const response = await fetch(`${backendURL}/api/resetPassword`, {
@@ -117,22 +102,12 @@ function App() {
         });
 
         if (response.status === 200) {
-          setMessage('Password reset correctly. You will be redirected soon.');
-          setStatus('success');
           await setTimeout(() => {
-            setContainerVisible(false);
-            setResetPassowrdVisible(false);
-            setMessage(null);
-            setStatus(null);
             navigate('/');
           }, 3000);
         } else {
-          setMessage('Error occured while trying to reset password.');
-          setStatus('error');
         }
       } else {
-        setMessage('Passwords do not match.');
-        setStatus('error');
       }
     } catch (error) {
       console.log('Error:', error);
@@ -155,12 +130,8 @@ function App() {
         body: JSON.stringify(data),
       });
       if (res.status == 200) {
-        setMessage('User created sucessfully');
-        setStatus('success');
       } else if (res.status == 409) {
         const data = await res.json();
-        setMessage(data.status);
-        setStatus('error');
       }
     } catch (error) {
       console.error('Error creating user:', error);
