@@ -5,8 +5,11 @@ function SignUpForm() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
+  const backendURL = process.env.REACT_APP_BACKEND_URL;
 
   const handlePasswordVerfication = (password, confirmPassword) => {
+    console.log(password);
+    console.log(confirmPassword);
     if (password !== confirmPassword) {
       return false;
     } else {
@@ -14,8 +17,38 @@ function SignUpForm() {
     }
   };
 
+  // Sign up function
+  const handleSignup = async () => {
+    const data = {
+      email: email,
+      username: username,
+      password: password,
+    };
+    try {
+      const res = await fetch(`${backendURL}/api/createUser`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      if (res.status === 200) {
+      } else if (res.status === 409) {
+        const data = await res.json();
+      }
+    } catch (error) {
+      console.error('Error creating user:', error);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault(); //Prevent page from reloading
+
+    if (handlePasswordVerfication()) {
+      handleSignup();
+    } else {
+      console.log('Passwords do no match;');
+    }
   };
   return (
     <div>
@@ -50,7 +83,10 @@ function SignUpForm() {
             setConfirmPassword(event.target.value);
           }}
         />
-        <button id="form-button"> Create Account</button>
+        <button id="form-button" on>
+          {' '}
+          Create Account
+        </button>
       </form>
     </div>
   );

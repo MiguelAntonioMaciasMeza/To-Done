@@ -1,20 +1,33 @@
 .header {
   display: flex;
-  margin-top: 25px;
+  position: sticky;
   border-radius: 20px;
   font-size: 35px;
   text-align: center;
-  justify-content: center;
+
+  justify-content: left;
   align-content: center;
+  border-bottom: 2px solid gainsboro;
+  border-radius: 0px;
 }
 
 #title {
-  width: 200px;
-  height: 100px;
-  background-color: #f3f9d2;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px white;
-  align-content: center;
-  font-family: cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 50px;
+  background-color: white;
+  font-family: 'Franklin Gothic Medium';
+}
+
+#cogs {
+  display: flex;
+  position: relative;
+  align-items: center;
+  padding-left: 2%;
+  padding-right: 2%;
+  justify-content: center;
+  border-right: 2px solid gainsboro;
+  float: left;
 }

@@ -10,7 +10,13 @@
   justify-content: center;
   border: 1px solid white;
   box-shadow: 0 0 5px white;
-  border-radius: 10px;
+  background-color: gainsboro;
+  transition: 0.75s;
+}
+
+.form-container.blurred {
+  filter: blur(2px);
+  transition: 0.75s;
 }
 
 .tabs {
@@ -20,7 +26,8 @@
 }
 
 .active {
-  background-color: palegreen;
+  background-color: black;
+  color: white;
 }
 
 .active-tab {
@@ -32,4 +39,5 @@
 
 #reset-password-button {
   justify-content: center;
+  margin: auto;
 }

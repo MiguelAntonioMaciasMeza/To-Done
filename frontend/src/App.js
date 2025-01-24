@@ -6,6 +6,8 @@ import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { Header } from './Components/Header';
 import { FormContainer } from './Components/FormContainer';
 import { use } from 'react';
+import { TaskList } from './Components/TaskList';
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState(null); // No user at first
@@ -59,25 +61,6 @@ function App() {
     }
   }, [location.pathname]); //Makes sure to have the HTML load before checking for change
 
-  //Request a reset password token with the use of the user's email.
-  async function requestToken() {
-    try {
-      const response = await fetch(`${backendURL}/api/resetToken`, {
-        mode: 'cors',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: email }),
-      });
-
-      //Email is valid, now make other textfields appear
-      if (response.status === 200) {
-        //Toggle aditional text-fields for reset token and new password
-      } else if (response.status === 404) {
-      }
-    } catch (error) {}
-  }
   function RenderMessage({ message, status }) {
     return <span className={`status-message ${status}`}> {message} </span>;
   }
@@ -113,30 +96,6 @@ function App() {
       console.log('Error:', error);
     }
   }
-  // Sign up function
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    const data = {
-      email: email,
-      username: username,
-      password: password,
-    };
-    try {
-      const res = await fetch(`${backendURL}/api/createUser`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      if (res.status == 200) {
-      } else if (res.status == 409) {
-        const data = await res.json();
-      }
-    } catch (error) {
-      console.error('Error creating user:', error);
-    }
-  };
 
   const handleUser = (data) => {
     setUser(data);
@@ -216,7 +175,7 @@ function App() {
     <div className="app">
       <Header />
       {user ? (
-        <p>{user.user.username}</p>
+        <TaskList userTasks={tasks} />
       ) : (
         <FormContainer onLogin={handleUser} />
       )}
