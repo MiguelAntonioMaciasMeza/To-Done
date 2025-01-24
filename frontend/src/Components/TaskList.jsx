@@ -1,20 +1,24 @@
+import { AddTask } from './AddTask';
 import { TaskView } from './TaskView';
-
+import '../Styles/Tasks.css';
 //Manages list
-
 function TaskList({ userTasks }) {
   if (userTasks.length === 0) {
     return (
-      <div>
-        <p>There are no tasks, consider adding one</p>
+      <div className="task-list-container">
+        <div className="task-list-items">
+          <p>There are no tasks, consider adding one</p>
+          <AddTask />
+        </div>
       </div>
     );
   }
   const renderedTask = userTasks.map((task, index) => {
-    console.log(index);
     return (
-      <div>
-        <TaskView task={task} />
+      <div className="task-list-container">
+        <div className="task-list-items">
+          <TaskView task={task} />
+        </div>
       </div>
     );
   });

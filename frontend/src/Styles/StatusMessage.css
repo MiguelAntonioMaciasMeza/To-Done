@@ -1,0 +1,17 @@
+.status-message-container {
+  display: flex;
+  flex-direction: column;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+  text-align: center;
+  margin: 0 60px 0 60px;
+  padding: 5px;
+  color: #ffffff;
+}
+.status-message-container.success {
+  background-color: #28a745;
+}
+
+.status-message-container.error {
+  background-color: #dc3546;
+}

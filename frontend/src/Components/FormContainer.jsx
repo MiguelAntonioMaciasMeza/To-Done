@@ -3,9 +3,16 @@ import '../Styles/FormContainer.css';
 import { LoginForm } from './LoginForm';
 import { SignUpForm } from './SignupForm';
 import { ResetPasswordForm } from './ResetPasswordForm';
+import { StatusMessage } from './StatusMessage';
 function FormContainer({ onLogin }) {
   const [activeTab, setActiveTab] = useState('signin');
   const [resetPassword, setResetPassword] = useState();
+  const [status, setStatus] = useState();
+  const [message, setMessage] = useState();
+  const handleStatus = (message, status) => {
+    setMessage(message);
+    setStatus(status);
+  };
   const handleResetForm = (message) => {
     setResetPassword(message);
   };
@@ -37,10 +44,13 @@ function FormContainer({ onLogin }) {
 
           {/*Only render the active tab */}
           {activeTab === 'signin' ? (
-            <div className="active-tab">
-              <div className="active-form">
-                <LoginForm onSubmit={onLogin} />
+            <div>
+              <div className="active-tab">
+                <div className="active-form">
+                  <LoginForm onSubmit={onLogin} onError={handleStatus} />
+                </div>
               </div>
+              <StatusMessage message={message} status={status} />
             </div>
           ) : (
             <div className="active-tab">
@@ -55,6 +65,7 @@ function FormContainer({ onLogin }) {
           id="reset-password-button"
           onClick={(event) => {
             setResetPassword('active');
+            handleStatus('', '');
           }}
         >
           Reset Password
@@ -62,7 +73,9 @@ function FormContainer({ onLogin }) {
       </div>
       {resetPassword === 'active' && (
         <div>
-          <ResetPasswordForm onExit={handleResetForm} />
+          <div>
+            <ResetPasswordForm onExit={handleResetForm} />
+          </div>
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
 import '../Styles/Form.css';
 import { useState } from 'react';
-function LoginForm({ onSubmit }) {
+function LoginForm({ onSubmit, onError }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const backendURL = process.env.REACT_APP_BACKEND_URL;
@@ -25,6 +25,7 @@ function LoginForm({ onSubmit }) {
         onSubmit(data);
       } else if (response.status === 401 || response.status === 400) {
         console.log('Error');
+        onError('Incorrect password/username, please try again.', 'error');
       } else {
       }
     } catch (err) {

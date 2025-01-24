@@ -1,0 +1,26 @@
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.task-list-items {
+  padding: inherit;
+  width: 500px;
+  padding: auto;
+  text-align: center;
+  background-color: gainsboro;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.add-task {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
