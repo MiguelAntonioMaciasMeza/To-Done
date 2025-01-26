@@ -1,4 +1,4 @@
-import '../Styles/Tasks.css';
+import '../../Styles/Tasks.css';
 function AddTask() {
   return (
     <div className="add-task">

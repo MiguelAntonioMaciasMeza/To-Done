@@ -1,7 +1,7 @@
-import '../Styles/ResetPassword.css';
+import '../../Styles/ResetPassword.css';
 import { useState } from 'react';
-import { StatusMessage } from './StatusMessage';
-function ResetPasswordForm({ onExit }) {
+import { StatusMessage } from '../Views/StatusMessage';
+function RequestPasswordReset({ onExit }) {
   const [email, setEmail] = useState();
   const [isVisible, setVisible] = useState(true);
   const [message, setMessage] = useState('');
@@ -58,4 +58,4 @@ function ResetPasswordForm({ onExit }) {
   );
 }
 
-export { ResetPasswordForm };
+export { RequestPasswordReset };

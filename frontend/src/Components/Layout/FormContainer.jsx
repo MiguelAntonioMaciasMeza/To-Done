@@ -1,9 +1,9 @@
 import { use, useState } from 'react';
-import '../Styles/FormContainer.css';
-import { LoginForm } from './LoginForm';
-import { SignUpForm } from './SignupForm';
-import { ResetPasswordForm } from './ResetPasswordForm';
-import { StatusMessage } from './StatusMessage';
+import '../../Styles/FormContainer.css';
+import { LoginForm } from '../Auth/LoginForm';
+import { SignUpForm } from '../Auth/SignupForm';
+import { RequestPasswordReset } from '../Auth/RequestPasswordReset';
+import { StatusMessage } from '../Views/StatusMessage';
 function FormContainer({ onLogin }) {
   const [activeTab, setActiveTab] = useState('signin');
   const [resetPassword, setResetPassword] = useState();
@@ -74,7 +74,7 @@ function FormContainer({ onLogin }) {
       {resetPassword === 'active' && (
         <div>
           <div>
-            <ResetPasswordForm onExit={handleResetForm} />
+            <RequestPasswordReset onExit={handleResetForm} />
           </div>
         </div>
       )}

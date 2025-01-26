@@ -1,23 +1,16 @@
 // States for tasks and authentication
 import React, { useState, useEffect } from 'react';
-import { FaTeeth, FaTrash, FaCheckCircle } from 'react-icons/fa';
-import './App.css';
+
+import '../App.css';
 import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
-import { Header } from './Components/Header';
-import { FormContainer } from './Components/FormContainer';
-import { use } from 'react';
-import { TaskList } from './Components/TaskList';
+import { Header } from '../Components/Layout/Header';
+import { FormContainer } from '../Components/Layout/FormContainer';
+
+import { TaskList } from '../Components/Layout/TaskList';
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [user, setUser] = useState(null); // No user at first
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  let location = useLocation();
-  let navigate = useNavigate();
 
   const backendURL = process.env.REACT_APP_BACKEND_URL;
   //New task
@@ -51,51 +44,6 @@ function App() {
       console.log('User: ', user);
     }
   }, [user]);
-
-  useEffect(() => {
-    if (location.pathname === '/reset-password') {
-      try {
-      } catch (error) {
-        console.log('Error:', error);
-      }
-    }
-  }, [location.pathname]); //Makes sure to have the HTML load before checking for change
-
-  function RenderMessage({ message, status }) {
-    return <span className={`status-message ${status}`}> {message} </span>;
-  }
-
-  async function resetPassword() {
-    try {
-      //Make sure the user has inserted the same password twice
-      const token = null;
-      console.log('This is token:', token);
-      if (newPassword === confirmPassword) {
-        const response = await fetch(`${backendURL}/api/resetPassword`, {
-          mode: 'cors',
-          method: 'PATCH',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            resetToken: token,
-            newPassword: newPassword,
-          }),
-        });
-
-        if (response.status === 200) {
-          await setTimeout(() => {
-            navigate('/');
-          }, 3000);
-        } else {
-        }
-      } else {
-      }
-    } catch (error) {
-      console.log('Error:', error);
-    }
-  }
 
   const handleUser = (data) => {
     setUser(data);

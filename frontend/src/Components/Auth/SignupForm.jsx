@@ -1,4 +1,4 @@
-import '../Styles/Form.css';
+import '../../Styles/Form.css';
 import { useState } from 'react';
 function SignUpForm() {
   const [password, setPassword] = useState('');

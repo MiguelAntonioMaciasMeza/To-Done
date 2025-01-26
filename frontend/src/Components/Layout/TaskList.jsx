@@ -1,6 +1,6 @@
-import { AddTask } from './AddTask';
-import { TaskView } from './TaskView';
-import '../Styles/Tasks.css';
+import { AddTask } from '../Layout/AddTask';
+import { TaskView } from '../Views/TaskView';
+import '../../Styles/Tasks.css';
 //Manages list
 function TaskList({ userTasks }) {
   if (userTasks.length === 0) {
