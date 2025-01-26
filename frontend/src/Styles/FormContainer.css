@@ -17,6 +17,7 @@
 .form-container.blurred {
   filter: blur(2px);
   transition: 0.75s;
+  pointer-events: none;
 }
 
 .tabs {
@@ -36,6 +37,9 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  transition: all 1s ease-in;
+  pointer-events: auto;
+  opacity: 1;
 }
 
 #reset-password-button {
