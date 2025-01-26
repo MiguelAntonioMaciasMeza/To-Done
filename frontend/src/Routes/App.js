@@ -5,7 +5,7 @@ import '../App.css';
 import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { Header } from '../Components/Layout/Header';
 import { FormContainer } from '../Components/Layout/FormContainer';
-
+import { Footer } from '../Components/Layout/Footer';
 import { TaskList } from '../Components/Layout/TaskList';
 
 function App() {
@@ -127,6 +127,7 @@ function App() {
       ) : (
         <FormContainer onLogin={handleUser} />
       )}
+      <Footer />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 form {
   display: flex;
   flex-direction: column;
+
   margin: 10px;
 }
 
@@ -12,6 +13,5 @@ input {
 }
 
 #form-button {
-  align-self: first baseline;
-  justify-content: left;
+  justify-content: center;
 }

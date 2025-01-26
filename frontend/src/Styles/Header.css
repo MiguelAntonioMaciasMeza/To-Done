@@ -11,6 +11,17 @@
   border-radius: 0px;
 }
 
+.footer {
+  display: flex;
+  position: sticky;
+  height: 50px;
+  padding-right: 50px;
+  margin-top: auto;
+  justify-content: right;
+  align-items: center;
+  border-top: 1px solid gainsboro;
+}
+
 #title {
   display: flex;
   justify-content: center;
