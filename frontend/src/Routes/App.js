@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 
 import '../App.css';
-import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
 import { Header } from '../Components/Layout/Header';
 import { FormContainer } from '../Components/Layout/FormContainer';
 import { Footer } from '../Components/Layout/Footer';
@@ -57,36 +56,6 @@ function App() {
     setTasks([]);
 
     console.log('After logout - tasks should be empty:', tasks);
-  };
-
-  const handleCreateTask = async (e) => {
-    e.preventDefault();
-    const data = {
-      name: newTask,
-      completed: newTaskBool,
-    };
-    try {
-      const res = await fetch(`${backendURL}/api/tasks`, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      const response = await fetch(`${backendURL}/api/tasks`, {
-        mode: 'cors',
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const tasksJSON = await response.json();
-      setTasks(tasksJSON.tasks);
-    } catch (error) {
-      console.error('Error creating task:', error);
-    }
   };
 
   const deleteTask = async (id) => {

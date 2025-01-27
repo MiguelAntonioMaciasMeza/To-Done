@@ -3,16 +3,6 @@ import { TaskView } from '../Views/TaskView';
 import '../../Styles/Tasks.css';
 //Manages list
 function TaskList({ userTasks }) {
-  if (userTasks.length === 0) {
-    return (
-      <div className="task-list-container">
-        <div className="task-list-items">
-          <p>There are no tasks, consider adding one</p>
-          <AddTask />
-        </div>
-      </div>
-    );
-  }
   const renderedTask = userTasks.map((task, index) => {
     return (
       <div className="task-list-container">
@@ -22,7 +12,12 @@ function TaskList({ userTasks }) {
       </div>
     );
   });
-  return <div>{renderedTask}</div>;
+  return (
+    <div>
+      <AddTask />
+      {renderedTask}
+    </div>
+  );
 }
 
 export { TaskList };
