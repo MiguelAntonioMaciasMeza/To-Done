@@ -5,15 +5,13 @@ import '../../Styles/Tasks.css';
 function TaskList({ userTasks }) {
   const renderedTask = userTasks.map((task, index) => {
     return (
-      <div className="task-list-container">
-        <div className="task-list-items">
-          <TaskView task={task} />
-        </div>
+      <div className="task-list-items">
+        <TaskView task={task} />
       </div>
     );
   });
   return (
-    <div>
+    <div className="task-list-container">
       <AddTask />
       {renderedTask}
     </div>

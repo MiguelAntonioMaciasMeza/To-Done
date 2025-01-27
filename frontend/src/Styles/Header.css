@@ -1,24 +1,23 @@
 .header {
   display: flex;
+  top: 0;
   position: sticky;
-  border-radius: 20px;
   font-size: 35px;
   text-align: center;
-
-  justify-content: left;
-  align-content: center;
   border-bottom: 2px solid gainsboro;
   border-radius: 0px;
 }
 
 .footer {
   display: flex;
+  bottom: 0;
   position: sticky;
   height: 50px;
   padding-right: 50px;
-  margin-top: auto;
+
   justify-content: right;
   align-items: center;
+  background-color: white;
   border-top: 2px solid gainsboro;
 }
 
