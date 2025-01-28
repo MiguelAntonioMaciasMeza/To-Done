@@ -58,36 +58,6 @@ function App() {
     console.log('After logout - tasks should be empty:', tasks);
   };
 
-  const deleteTask = async (id) => {
-    try {
-      await fetch(`${backendURL}/api/tasks/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
-      });
-      setTasks(tasks.filter((tasks) => tasks._id !== id));
-    } catch (error) {
-      console.error('Error deleting task:', error);
-    }
-  };
-
-  const completeTask = async (id, completed) => {
-    try {
-      await fetch(`${backendURL}/api/tasks/${id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ completed: !completed }),
-      });
-      setTasks(
-        tasks.map((task) =>
-          task._id !== id ? { ...task, completed: !completed } : task,
-        ),
-      );
-      setTasks(tasks.filter((tasks) => tasks._id !== id));
-    } catch (error) {
-      console.error('Error updating task:', error);
-    }
-  };
-
   return (
     <div className="app">
       <Header />

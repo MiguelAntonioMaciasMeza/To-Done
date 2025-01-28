@@ -31,10 +31,31 @@
   background-color: gainsboro;
   justify-content: center;
   flex-direction: row;
-  justify-items: center;
   text-align: center;
 }
 
 .task {
   display: flex;
+  width: inherit;
+  align-items: center;
+}
+
+.task-delete {
+  display: flex;
+  width: 200px;
+  margin-left: auto;
+  width: max-content;
+  align-items: center;
+  justify-content: right;
+}
+
+.task-delete:hover {
+  filter: invert(75%);
+  transition: filter 0.3s;
+}
+
+.task-container {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
 }

@@ -177,7 +177,7 @@ const emailToken = async (req, res) => {
 };
 
 const compareToken = async (req, res, next) => {
-  console.log('Requestrecieved inside compare token');
+  console.log('Request recieved inside compare token');
   try {
     const user = await User.findOne({ resetToken: req.body.resetToken });
     console.log(user);
