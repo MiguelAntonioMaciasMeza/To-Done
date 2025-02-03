@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../../Styles/Tasks.css';
 import { StatusMessage } from '../Views/StatusMessage';
-function AddTask() {
+function AddTask({ onUpdate }) {
   const [taskName, setTaskName] = useState('');
   const [message, setMessage] = useState('');
   const [status, setStatus] = useState('');
@@ -25,6 +25,7 @@ function AddTask() {
         console.log('Task posted successfully');
         setMessage('Task created sucessfully.');
         setStatus('success');
+        onUpdate();
       } else {
         setMessage('Error in posting task.');
         setStatus('error');

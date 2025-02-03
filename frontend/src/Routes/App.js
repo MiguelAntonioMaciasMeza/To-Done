@@ -12,35 +12,35 @@ function App() {
   const [user, setUser] = useState(null); // No user at first
 
   const backendURL = process.env.REACT_APP_BACKEND_URL;
-  //New task
-  const [newTask, setNewTask] = useState('');
-  const [newTaskBool, setNewTaskBool] = useState(false);
+  const getTasks = async () => {
+    try {
+      console.log('GET From api/task');
+      const response = await fetch(`${backendURL}/api/tasks`, {
+        mode: 'cors',
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      setTasks(data.tasks);
+      console.log(tasks);
+    } catch (error) {
+      console.error('Error getting tasks from backend: ', error);
+    }
+  };
 
-  // Get tasks from backend WHEN user is logged in
+  //Recall tasks whenever a task is removed or added.
+  const handleTaskUpdate = () => {
+    getTasks();
+  };
+  // Get tasks from backend WHEN user is logged in or changes like editing or deletionz
   useEffect(() => {
     if (user) {
-      const getTasks = async () => {
-        try {
-          console.log('GET From api/task');
-          const response = await fetch(`${backendURL}/api/tasks`, {
-            mode: 'cors',
-            method: 'GET',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
-          const data = await response.json();
-          setTasks(data.tasks);
-        } catch (error) {
-          console.error('Error getting tasks from backend: ', error);
-        }
-      };
       getTasks();
     } else {
       setTasks([]); // Clear tasks when user is logged out
-      console.log('Tasks: ', tasks);
-      console.log('User: ', user);
     }
   }, [user]);
 
@@ -60,9 +60,9 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
+      <Header loggedIn={user} />
       {user ? (
-        <TaskList userTasks={tasks} />
+        <TaskList tasks={tasks} user={user} onTaskUpdate={handleTaskUpdate} />
       ) : (
         <FormContainer onLogin={handleUser} />
       )}
