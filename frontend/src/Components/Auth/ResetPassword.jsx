@@ -8,7 +8,7 @@ function ResetPasswordForm() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
-  const params = useSearchParams();
+  const [params] = useSearchParams();
   const navigate = useNavigate();
 
   const token = params.get('token');
