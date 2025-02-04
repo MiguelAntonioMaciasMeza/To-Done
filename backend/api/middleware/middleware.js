@@ -100,10 +100,12 @@ const authUser = async (req, res, next) => {
     const token = jwt.sign({ id: res.user._id }, process.env.MY_SECRET, {
       expiresIn: '1h',
     });
+    //Return header, Partitioned tag added for strict firefox ruling.
     res.setHeader(
       'Set-Cookie',
       `token=${token}; HttpOnly; Secure; SameSite=None; Partitioned`
     );
+
     //Return back User object with token and taskID's
     res.status(200).json({
       user: res.user,
