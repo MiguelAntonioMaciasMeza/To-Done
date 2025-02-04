@@ -5,7 +5,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 
 //Manages list
-function TaskList({ onTaskUpdate, tasks, user }) {
+function TaskList({ onTaskUpdate, tasks }) {
   const handleTaskUpdate = () => {
     onTaskUpdate();
   };

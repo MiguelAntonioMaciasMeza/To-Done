@@ -1,9 +1,9 @@
 import '../../Styles/SignOutButton.css';
 
-function SignOutButton() {
+function SignOutButton({ handleSignOut }) {
   return (
     <div className="sign-out-button">
-      <button> Sign Out</button>
+      <button onClick={handleSignOut}> Sign Out</button>
     </div>
   );
 }
