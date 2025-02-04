@@ -9,11 +9,11 @@ import { HashRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}></Route>
         <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>,
 );
