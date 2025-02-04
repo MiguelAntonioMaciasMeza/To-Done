@@ -1,0 +1,48 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 25px;
+  justify-content: center;
+  border: 1px solid white;
+  box-shadow: 0 0 5px white;
+  background-color: gainsboro;
+  transition: 0.75s;
+}
+
+.form-container.blurred {
+  filter: blur(2px);
+  transition: 0.75s;
+  pointer-events: none;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  background-color: black;
+  color: white;
+}
+
+.active-tab {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease-in;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+#reset-password-button {
+  justify-content: center;
+  margin: auto;
+}
