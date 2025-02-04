@@ -6,6 +6,7 @@ const Task = require('./api/models/Task.js');
 const User = require('./api/models/User.js');
 const cookieParser = require('cookie-parser');
 const { apiRoute } = require('./api/routes/routes.js');
+
 require('dotenv').config();
 console.log('Mongo Username', process.env.MONGO_USERNAME);
 console.log('Mongo Password', process.env.MONGO_PASSWORD);
@@ -18,14 +19,14 @@ mongoose
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('Error connecting to MongoDB'));
 
-// Middleware
+// Allows requests from React frontend
 app.use(
   cors({
     origin: ['https://localhost:3000', process.env.FRONTEND_URL],
     credentials: true,
   })
 );
-// Allows requests from React frontend
+
 app.use(express.json()); // Parses JSON request bodies
 app.use(cookieParser()); // Allows us to access cookies from requests
 app.use('/api', apiRoute);
@@ -33,31 +34,6 @@ app.use('/api', apiRoute);
 // Route
 app.get('/api', (req, res) => {
   res.json({ message: 'Backend says hello!' });
-});
-
-// Delete a task
-app.delete('api/tasks/:id', async (req, res) => {
-  try {
-    const task = await Task.findByIdAndDelete(req.params.id);
-    if (!task) return res.status(404).json({ message: 'Could not find task' });
-    res.json({ message: 'Deleted task' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-// Update a task's completion
-app.put('/api/tasks/:id', async (req, res) => {
-  try {
-    const task = await Task.findById(req.params.id);
-    if (!task) return res.status(404).json({ message: 'Could not find task' });
-
-    task.completed =
-      req.body.completed !== undefined ? req.body.completed : task.completed;
-    await task.save();
-    res.json(task);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
 });
 
 // Start server
