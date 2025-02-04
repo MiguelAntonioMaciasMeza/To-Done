@@ -1,11 +1,10 @@
 import '../../Styles/Header.css';
 import { SignOutButton } from './SignOutButton';
-function Header({ loggedIn }) {
-  const handleSignOut = () => {};
+function Header({ loggedIn, onSignOut }) {
   return (
     <div className="header">
       <div id="title">To-Done</div>
-      {loggedIn && <SignOutButton onSignOut={handleSignOut} />}
+      {loggedIn && <SignOutButton handleSignOut={onSignOut} />}
     </div>
   );
 }

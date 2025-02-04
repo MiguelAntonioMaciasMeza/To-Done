@@ -1,6 +1,6 @@
 // States for tasks and authentication
 import React, { useState, useEffect } from 'react';
-
+import '../Styles/Tasks.css';
 import '../App.css';
 import { Header } from '../Components/Layout/Header';
 import { FormContainer } from '../Components/Layout/FormContainer';
@@ -48,19 +48,15 @@ function App() {
     setUser(data);
   };
 
-  const handleLogout = () => {
-    console.log('Before logout - tasks:', tasks);
-
+  const handleSignOut = () => {
     // Clear user and tasks
     setUser(null);
     setTasks([]);
-
-    console.log('After logout - tasks should be empty:', tasks);
   };
 
   return (
     <div className="app">
-      <Header loggedIn={user} />
+      <Header loggedIn={user} onSignOut={handleSignOut} />
       {user ? (
         <TaskList tasks={tasks} user={user} onTaskUpdate={handleTaskUpdate} />
       ) : (
